@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="js/main.js" defer></script>
+    <script type="module" src="js/main.js" defer></script>
 </head>
 <body>
         <h1>Projet JS avancé</h1>
         <p>Liste des cinémas :</p>
         <div>
-            <ul id="cine_list"></ul>
+            <table>
+                <thead>
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                    <th>Commune</th>
+                </thead>
+                <tbody id="cine_list">
+                    <!-- cinemas -->
+                </tbody>
+            </table>
         </div>
 
 
