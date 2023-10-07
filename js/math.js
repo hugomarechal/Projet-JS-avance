@@ -9,7 +9,7 @@
  * @return {int} La distance en km
  */
 
-export function haversine(origin, target) {
+export default function haversine(origin, target) {
 	const [lat1, lon1] = origin;
 	const [lat2, lon2] = target;
 

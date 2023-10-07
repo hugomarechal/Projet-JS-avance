@@ -2,7 +2,9 @@
 
 "use strict";
 
-// import haversine from "/math.js"
+console.log('hello')
+
+import haversine from "/math.js"
 
 const elements = {
     list: document.querySelector('#cine_list')
@@ -35,15 +37,16 @@ onload = () => {
         response.results.sort((a, b) => b.fauteuils - a.fauteuils).forEach(cinema => {
             
             //calcDistance
-            const calcDistance = async () => {
-                const userLoc = await getLocation();
-                const cineLoc = [cinema.latitude, cinema.longitude];
-                const distance = haversine(userLoc, cineLoc);
+            // const calcDistance = async () => {
+            //     const userLoc = await getLocation();
+            //     const cineLoc = [cinema.latitude, cinema.longitude];
+            //     const distance = haversine(userLoc, cineLoc);
+            //     console.log(distance);
 
-                return distance;
-            }
+            //     return distance;
+            // }
 
-            calcDistance();
+            // calcDistance();
 
             outputHTML += `
                 <tr>
