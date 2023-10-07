@@ -10,20 +10,22 @@ const elements = {
 
 const url = `https://data.culture.gouv.fr/api/explore/v2.1/catalog/datasets/etablissements-cinematographiques/records?limit=20`;
 
-// sort cinemas 
-onload = () => {
-
-
-    // get geoloc info
+const getLocation = () => {
     let location;
     navigator.geolocation.getCurrentPosition(position => {
         
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
         location = [latitude, longitude];
-        console.log(location);
 
+        return location;
     });
+};
+
+// sort cinemas 
+onload = () => {
+
+    getLocation();
 
     // display cinemas
     fetch(url).then(response => response.json()).then(response => {
@@ -31,11 +33,23 @@ onload = () => {
         let outputHTML = "";
 
         response.results.sort((a, b) => b.fauteuils - a.fauteuils).forEach(cinema => {
+            
+            //calcDistance
+            const calcDistance = async () => {
+                const userLoc = await getLocation();
+                const cineLoc = [cinema.latitude, cinema.longitude];
+                const distance = haversine(userLoc, cineLoc);
+
+                return distance;
+            }
+
+            calcDistance();
+
             outputHTML += `
                 <tr>
                     <td>${cinema.nom}</td>
-                    <td>${cinema.adresse}</td>
-                    <td>${cinema.commune}</td>
+                    <td>${cinema.adresse}, ${cinema.commune}</td>
+                    <td>${distance}</td>
                 </tr>
             ` 
             elements.list.innerHTML = outputHTML;
